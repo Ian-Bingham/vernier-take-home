@@ -1,5 +1,5 @@
 import { LitElement, html } from "lit";
-import "./src/components/data-form.js";
+import "./data-form.js";
 import { ChallengeDataService } from "./ChallengeDataService.js";
 import { Task } from "@lit/task";
 
