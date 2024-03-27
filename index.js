@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement, css, html } from "lit";
 import "./data-form.js";
 import { ChallengeDataService } from "./ChallengeDataService.js";
 import { Task } from "@lit/task";
@@ -7,6 +7,14 @@ import "./challenge-table.js";
 import "./challenge-chart/dist/challenge-chart.js";
 
 class App extends LitElement {
+	static get styles() {
+		return css`
+			h1 {
+				text-align: center;
+			}
+		`;
+	}
+
 	constructor() {
 		super();
 		this._data_service = new ChallengeDataService();
@@ -58,6 +66,7 @@ class App extends LitElement {
 
 	render() {
 		return html`
+			<h1>Data Viewer</h1>
 			<data-form @size-selected=${this.handleFormSubmission}></data-form>
 			${this._fetchDataTask.render({
 				pending: this.renderPending,
