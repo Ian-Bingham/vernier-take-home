@@ -1,5 +1,5 @@
 import { LitElement, css, html } from "lit";
-import "./data-form.js";
+import "./non-streaming-form.js";
 
 import "./non-streaming-app.js";
 import "./streaming-app.js";

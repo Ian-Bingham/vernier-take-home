@@ -2,7 +2,7 @@ import { LitElement, html } from "lit";
 import { ChallengeDataService } from "./ChallengeDataService.js";
 import { Task } from "@lit/task";
 
-import "./data-form.js";
+import "./non-streaming-form.js";
 import "./challenge-table.js";
 import "./challenge-chart/dist/challenge-chart.js";
 
@@ -58,7 +58,9 @@ class NonStreamingApp extends LitElement {
 
 	render() {
 		return html`
-			<data-form @size-selected=${this.handleFormSubmission}></data-form>
+			<non-streaming-form
+				@size-selected=${this.handleFormSubmission}
+			></non-streaming-form>
 			${this._fetchDataTask.render({
 				pending: this.renderPending,
 				complete: this.renderComplete,

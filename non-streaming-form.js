@@ -1,6 +1,6 @@
 import { LitElement, css, html } from "lit";
 
-class DataForm extends LitElement {
+class NonStreamingForm extends LitElement {
 	static styles = css`
 		label {
 			font-size: 18px;
@@ -47,4 +47,4 @@ class DataForm extends LitElement {
 	}
 }
 
-customElements.define("data-form", DataForm);
+customElements.define("non-streaming-form", NonStreamingForm);
