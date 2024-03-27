@@ -4,6 +4,7 @@ import { ChallengeDataService } from "./ChallengeDataService.js";
 import { Task } from "@lit/task";
 
 import "./challenge-table.js";
+import "./challenge-chart/dist/challenge-chart.js";
 
 class App extends LitElement {
 	constructor() {
@@ -45,6 +46,7 @@ class App extends LitElement {
 				.headers=${headers}
 				.data=${tableData}
 			></challenge-table>
+			<challenge-chart .data=${tableData}></challenge-chart>
 		`;
 	}
 
