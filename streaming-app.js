@@ -20,6 +20,11 @@ class StreamingApp extends LitElement {
 		this.chartData = [];
 	}
 
+	updateChartData() {
+		this.chartData = [...this.chartData, ...this._chartBuffer];
+		this._chartBuffer = [];
+	}
+
 	handleStart() {
 		this.tableData = [];
 		this._chartBuffer = [];
@@ -33,14 +38,15 @@ class StreamingApp extends LitElement {
 				this._chartBuffer.length >=
 				DATA_POINTS_PER_SECOND * CHART_REFRESH_SECONDS
 			) {
-				this.chartData = [...this.chartData, ...this._chartBuffer];
-				this._chartBuffer = [];
+				this.updateChartData();
 			}
 		});
 	}
 
 	handleStop() {
 		this._data_service.stopStreaming();
+		this.updateChartData();
+		this.requestUpdate();
 	}
 
 	disconnectedCallback() {
