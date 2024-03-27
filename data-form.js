@@ -1,6 +1,16 @@
-import { LitElement, html } from "lit";
+import { LitElement, css, html } from "lit";
 
 class DataForm extends LitElement {
+	static styles = css`
+		label {
+			font-size: 18px;
+		}
+
+		.button-container {
+			margin: 1rem 0;
+		}
+	`;
+
 	get select_value() {
 		const sizeSelect = this.renderRoot?.querySelector("#size-select") ?? null;
 		return sizeSelect?.value;
@@ -29,7 +39,9 @@ class DataForm extends LitElement {
 					<option value="medium">Medium</option>
 					<option value="large">Large</option>
 				</select>
-				<button @click=${this.onSubmit}>Submit</button>
+				<div class="button-container">
+					<button @click=${this.onSubmit}>Submit</button>
+				</div>
 			</form>
 		`;
 	}
