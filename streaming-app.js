@@ -51,7 +51,7 @@ class StreamingApp extends LitElement {
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
-		this.handleStop();
+		this._data_service.stopStreaming();
 	}
 
 	render() {
