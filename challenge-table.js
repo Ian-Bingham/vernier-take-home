@@ -55,8 +55,8 @@ export class ChallengeTable extends LitElement {
 
 	constructor() {
 		super();
-		this.name = "Data  Table";
-		this.headers = [];
+		this.name = "Data Table";
+		this.headers = ["x", "y"];
 		this.data = [];
 	}
 
