@@ -14,25 +14,31 @@ export class ChallengeTable extends LitElement {
 
 	static get properties() {
 		return {
-			challengeDataSet: {},
+			name: {},
+			headers: {},
+			data: {},
 		};
 	}
 
 	constructor() {
 		super();
-		this.challengeDataSet = {};
+		this.name = "Data  Table";
+		this.headers = [];
+		this.data = [];
+	}
+
+	renderHeader() {
+		return html`${this.headers.map((name) => {
+			return html` <th>${name}</th> `;
+		})} `;
 	}
 
 	renderBody() {
-		const { xColumn, yColumn } = this.challengeDataSet;
-
-		return html`${xColumn.values.map((xVal, i) => {
-			const yVal = yColumn.values[i];
-
+		return html`${this.data.map((col) => {
 			return html`
 				<tr>
-					<td>${xVal}</td>
-					<td>${yVal}</td>
+					<td>${col.x}</td>
+					<td>${col.y}</td>
 				</tr>
 			`;
 		})} `;
@@ -40,12 +46,11 @@ export class ChallengeTable extends LitElement {
 
 	render() {
 		return html`
-			<h1>${this.challengeDataSet.name}</h1>
+			<h1>${this.name}</h1>
 			<table>
 				<thead>
 					<tr>
-						<th>${this.challengeDataSet.xColumn.name}</th>
-						<th>${this.challengeDataSet.yColumn.name}</th>
+						${this.renderHeader()}
 					</tr>
 				</thead>
 				<tbody>

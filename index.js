@@ -26,8 +26,25 @@ class App extends LitElement {
 	}
 
 	renderComplete(data) {
+		const { name, xColumn, yColumn } = data;
+
+		const headers = [xColumn.name, yColumn.name];
+
+		const tableData = xColumn.values.map((xVal, i) => {
+			const yVal = yColumn.values[i];
+
+			return {
+				x: xVal,
+				y: yVal,
+			};
+		});
+
 		return html`
-			<challenge-table .challengeDataSet=${data}></challenge-table>
+			<challenge-table
+				.name=${name}
+				.headers=${headers}
+				.data=${tableData}
+			></challenge-table>
 		`;
 	}
 
