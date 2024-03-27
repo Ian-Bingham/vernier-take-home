@@ -10,7 +10,13 @@ class DataForm extends LitElement {
 		e.preventDefault();
 
 		if (this.select_value) {
-			console.log("Selected value", this.select_value);
+			const eventOptions = {
+				detail: { size: this.select_value },
+				bubbles: true,
+				composed: true,
+			};
+
+			this.dispatchEvent(new CustomEvent("size-selected", eventOptions));
 		}
 	}
 
@@ -19,9 +25,9 @@ class DataForm extends LitElement {
 			<form>
 				<label for="size-select">Select a size for the data set:</label>
 				<select id="size-select">
-					<option value="sm">Small</option>
-					<option value="md">Medium</option>
-					<option value="lg">Large</option>
+					<option value="small">Small</option>
+					<option value="medium">Medium</option>
+					<option value="large">Large</option>
 				</select>
 				<button @click=${this.onSubmit}>Submit</button>
 			</form>

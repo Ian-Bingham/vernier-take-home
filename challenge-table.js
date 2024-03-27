@@ -1,46 +1,58 @@
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from "lit";
 
 export class ChallengeTable extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        color: red;
-      }
-      table {
-        border: dashed purple;
-      }
-    `;
-  }
-  
-  static get properties() {
-    return {
-      // Feel free to refactor, change type, name, etc
-      tableName: { type: String },
-      data: { type: Array },
-    };
-  }
+	static get styles() {
+		return css`
+			:host {
+				color: red;
+			}
+			table {
+				border: dashed purple;
+			}
+		`;
+	}
 
-  constructor(){
-    super();
-    this.tableName = '';
-    this.data = [];
-  }
+	static get properties() {
+		return {
+			challengeDataSet: {},
+		};
+	}
 
-  render() {
-    return html`
-      <h1>${this.tableName}</h1>
-      <table>
-        ${this.data.map(
-          (dataRow) => html`
-            <tr>
-              <td>${dataRow[0]}</td>
-              <td>${dataRow[1]}</td>
-              <td></td>
-            </tr>
-          `
-        )}
-      </table>
-    `;
-  }
+	constructor() {
+		super();
+		this.challengeDataSet = {};
+	}
+
+	renderBody() {
+		const { xColumn, yColumn } = this.challengeDataSet;
+
+		return html`${xColumn.values.map((xVal, i) => {
+			const yVal = yColumn.values[i];
+
+			return html`
+				<tr>
+					<td>${xVal}</td>
+					<td>${yVal}</td>
+				</tr>
+			`;
+		})} `;
+	}
+
+	render() {
+		return html`
+			<h1>${this.challengeDataSet.name}</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>${this.challengeDataSet.xColumn.name}</th>
+						<th>${this.challengeDataSet.yColumn.name}</th>
+					</tr>
+				</thead>
+				<tbody>
+					${this.renderBody()}
+				</tbody>
+			</table>
+		`;
+	}
 }
 window.customElements.define("challenge-table", ChallengeTable);
