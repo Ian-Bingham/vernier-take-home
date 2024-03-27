@@ -1,8 +1,10 @@
-import './challenge-table';
+import { LitElement, html } from "lit";
+import "./src/components/data-form.js";
 
-const challengeTable = document.querySelector('challenge-table')
-challengeTable.data = [
-  [1, 1],
-  [2, 2],
-];
-challengeTable.tableName = 'example table component'
+class App extends LitElement {
+	render() {
+		return html`<data-form></data-form>`;
+	}
+}
+
+customElements.define("my-app", App);
