@@ -11,7 +11,12 @@ import {
 
 class ChallengeChart extends LitElement {
   static get styles() {
-    return css``;
+    return css`
+			.chart-container {
+				width: 100%;
+				height: 100%;
+			}
+		`;
   }
 
   static get properties() {
@@ -80,7 +85,11 @@ class ChallengeChart extends LitElement {
   }
 
   render() {
-    return html`<canvas id="chart"></canvas>`;
+    return html`
+      <div class="chart-container">
+        <canvas id="chart"></canvas>
+      </div>
+    `;
   }
 }
 customElements.define('challenge-chart', ChallengeChart);
