@@ -2,10 +2,6 @@ import { LitElement, css, html } from "lit";
 
 class NonStreamingForm extends LitElement {
 	static styles = css`
-		label {
-			font-size: 18px;
-		}
-
 		.button-container {
 			margin: 1rem 0;
 		}
