@@ -1,46 +1,100 @@
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from "lit";
 
 export class ChallengeTable extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        color: red;
-      }
-      table {
-        border: dashed purple;
-      }
-    `;
-  }
-  
-  static get properties() {
-    return {
-      // Feel free to refactor, change type, name, etc
-      tableName: { type: String },
-      data: { type: Array },
-    };
-  }
+	static get styles() {
+		return css`
+			.table-container {
+				margin-bottom: 4rem;
+				max-height: 300px;
+				overflow: auto;
 
-  constructor(){
-    super();
-    this.tableName = '';
-    this.data = [];
-  }
+				border: 2px solid #838383;
+			}
 
-  render() {
-    return html`
-      <h1>${this.tableName}</h1>
-      <table>
-        ${this.data.map(
-          (dataRow) => html`
-            <tr>
-              <td>${dataRow[0]}</td>
-              <td>${dataRow[1]}</td>
-              <td></td>
-            </tr>
-          `
-        )}
-      </table>
-    `;
-  }
+			table {
+				width: 100%;
+				position: relative;
+
+				border-collapse: collapse;
+				text-align: center;
+			}
+
+			thead {
+				position: sticky;
+				top: 0;
+			}
+
+			thead tr,
+			tbody tr:not(:last-child) {
+				border-bottom: 1px solid #8c8c8c;
+			}
+
+			thead tr {
+				background: #b6b6b6;
+			}
+
+			th,
+			td {
+				padding: 8px 10px;
+			}
+
+			th:not(:last-child),
+			td:not(:last-child) {
+				border-right: 1px solid #8c8c8c;
+			}
+		`;
+	}
+
+	static get properties() {
+		return {
+			name: {},
+			headers: {},
+			data: {},
+		};
+	}
+
+	constructor() {
+		super();
+		this.name = "Data Table";
+		this.headers = ["x", "y"];
+		this.data = [];
+	}
+
+	renderHeader() {
+		return html`<th>Point</th>
+			${this.headers.map((name) => {
+				return html` <th>${name}</th> `;
+			})} `;
+	}
+
+	renderBody() {
+		return html`${this.data.map((col, i) => {
+			return html`
+				<tr>
+					<td>${i + 1}</td>
+					<td>${col.x}</td>
+					<td>${col.y}</td>
+				</tr>
+			`;
+		})} `;
+	}
+
+	render() {
+		return html`
+			<h2>${this.name}</h2>
+			<div class="table-container">
+				<table>
+					<thead>
+						<tr>
+							${this.renderHeader()}
+						</tr>
+					</thead>
+					<tbody>
+						${this.renderBody()}
+					</tbody>
+				</table>
+			</div>
+		`;
+	}
 }
 window.customElements.define("challenge-table", ChallengeTable);
