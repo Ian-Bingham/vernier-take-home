@@ -64,8 +64,12 @@ class StreamingApp extends LitElement {
 				Note: The stream is programmed to get 5 data points per second, and the
 				chart will update every 5 seconds.
 			</p>
-			<challenge-table .data=${this.tableData}></challenge-table>
-			<challenge-chart .data=${this.chartData}></challenge-chart>
+			${!!this.tableData.length
+				? html`<challenge-table .data=${this.tableData}></challenge-table>`
+				: null}
+			${!!this.chartData.length
+				? html`<challenge-chart .data=${this.chartData}></challenge-chart>`
+				: null}
 		`;
 	}
 }
